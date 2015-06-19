@@ -1,0 +1,10 @@
+{
+  "author": "Hendrik Weiler",
+  "name": "jsm",
+  "description": "a little globber",
+  "version": "1.0.0",
+  "dependencies": {
+    "glob": "*",
+    "jsmin" : "*"
+  }
+}
