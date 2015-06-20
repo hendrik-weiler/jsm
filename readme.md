@@ -33,7 +33,7 @@ test.a.b.c.Help=function(){}
 ## How to compile?
 
 ```
-node bin/compiler.js test/app build.js
+node bin/jsmc.js test/app build.js
 ```
 
 > The first parameter describes which folder will be read from.

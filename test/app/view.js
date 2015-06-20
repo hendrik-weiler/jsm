@@ -1,7 +1,4 @@
-//import $.vendor.jquery;
-
-namespace test;
-
+namespace test.x;
 
 /**
 * Hello there

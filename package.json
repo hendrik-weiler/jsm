@@ -1,10 +1,23 @@
 {
   "author": "Hendrik Weiler",
-  "name": "jsm",
-  "description": "a little globber",
-  "version": "1.0.0",
+  "name": "jsm-compiler",
+  "description": "Javascript Modular Compiler",
+  "version": "0.1.1",
   "dependencies": {
     "glob": "*",
-    "jsmin" : "*"
+    "jsmin" : "*",
+    "watch" : "*"
+  },
+  "main": "./bin/jsmc",
+  "keywords": [
+    "javascript",
+    "compiler",
+    "modular"
+  ],
+  "bin": {
+    "uppercaseme": "./bin/jsmc"
+  },
+  "engines": {
+    "node": "*"
   }
 }

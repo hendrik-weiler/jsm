@@ -4,6 +4,7 @@ var fs = require('fs');
 var os = require('os');
 var path = require('path');
 var jsmin = require('jsmin').jsmin;
+var watch = require('watch');
 
 var importRegex = /^import( +)?([\w\$.]+);/i;
 var namespaceRegex = /^namespace( +)?([\w.]+);/i;
@@ -67,13 +68,16 @@ function finishedReading() {
 
   var minified = jsmin(buildContent);
 
-	fs.writeFile(buildpath,minified, function(err) {
-	    if(err) {
-	        return console.log(err);
-	    }
+  fs.truncate(buildpath, 0, function(){
+    fs.writeFile(buildpath,minified, function(err) {
+        if(err) {
+            return console.log(err);
+        }
 
-	    console.log("The file was saved!");
-	}); 
+        console.log("The file was saved!");
+    }); 
+  });
+
 }
 
 function readFileByLine(pathToFile, callback, endoffilecallback) {
@@ -89,50 +93,70 @@ function readFileByLine(pathToFile, callback, endoffilecallback) {
   });
 }
 
-glob(srcfolder+"/**/*.js", function (er, files) {
-  for (var i = files.length - 1; i >= 0; i--) {
+function generate() {
 
-  	var linecounter = 0;
-  	var filecounter = 0;
-  	var currentNamespace = '';
-  	var currentClassName = '';
-  	var fileContent = '';
-		readFileByLine(files[i],function(line){
-				var toContent = true;
-			  linecounter++;
-		    if(importRegex.test(line)) {
-		    	var groups = importRegex.exec(line);
-		    	var string = groups[0].replace('import','').replace(';','').trim();
-		    	addFileImport(string);
-		    	toContent = false;
-		    }
-		    if(namespaceRegex.test(line)) {
-		    	var groups = namespaceRegex.exec(line);
-		    	var string = groups[0].replace('namespace','').replace(';','').trim();
-		    	currentNamespace = string;
-		    	toContent = false;
-		    }
-		    if(firstVariableRegex.test(line)) {
-		    	var groups = firstVariableRegex.exec(line);
-		    	var string = groups[3].trim();
-		    	currentClassName = string;
-		    	line = currentNamespace + '.' + line.replace('var ','');
-		    }
-		    if(toContent) fileContent += line + os.EOL;
-		}, function() {
-			filecounter++;
-    	namespacesAdd({
-    		namespace : currentNamespace,
-    		className : currentClassName,
-    		content : fileContent
-    	});
+  glob(srcfolder+"/**/*.js", function (er, files) {
+    for (var i = files.length - 1; i >= 0; i--) {
 
-    	fileContent = '';
+    	var linecounter = 0;
+    	var filecounter = 0;
+    	var currentNamespace = '';
+    	var currentClassName = '';
+    	var fileContent = '';
+  		readFileByLine(files[i],function(line){
+  				var toContent = true;
+  			  linecounter++;
+  		    if(importRegex.test(line)) {
+  		    	var groups = importRegex.exec(line);
+  		    	var string = groups[0].replace('import','').replace(';','').trim();
+  		    	addFileImport(string);
+  		    	toContent = false;
+  		    }
+  		    if(namespaceRegex.test(line)) {
+  		    	var groups = namespaceRegex.exec(line);
+  		    	var string = groups[0].replace('namespace','').replace(';','').trim();
+  		    	currentNamespace = string;
+  		    	toContent = false;
+  		    }
+  		    if(firstVariableRegex.test(line)) {
+  		    	var groups = firstVariableRegex.exec(line);
+  		    	var string = groups[3].trim();
+  		    	currentClassName = string;
+  		    	line = currentNamespace + '.' + line.replace('var ','');
+  		    }
+  		    if(toContent) fileContent += line + os.EOL;
+  		}, function() {
+  			filecounter++;
+      	namespacesAdd({
+      		namespace : currentNamespace,
+      		className : currentClassName,
+      		content : fileContent
+      	});
 
-			if(filecounter==files.length) {
-				finishedReading();
-			}
-		});
+      	fileContent = '';
 
-  };
-});
+  			if(filecounter==files.length) {
+  				finishedReading();
+  			}
+  		});
+
+    };
+  });
+
+}
+
+console.log('Reading folder ' + srcfolder + ' ...');
+watch.watchTree(srcfolder, function (f, curr, prev) {
+  if (typeof f == "object" && prev === null && curr === null) {
+    console.log('Started watching ' + srcfolder);
+  } else if (prev === null) {
+    // f is a new file
+    generate();
+  } else if (curr.nlink === 0) {
+    // f was removed
+    generate();
+  } else {
+    // f was changed
+    generate();
+  }
+})
