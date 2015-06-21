@@ -30,10 +30,21 @@ test.a.b.c.Test.prototype.hallo=function(){}
 test.a.b.c.Help=function(){}
 ```
 
+## Install via npm
+
+```
+npm install -g jsm-compiler
+```
+
+Usage:<br>
+```
+jsmc folderToWatch fileToBuild
+```
+
 ## How to compile?
 
 ```
-node bin/jsmc.js test/app build.js
+node bin/jsmc test/app build.js
 ```
 
 > The first parameter describes which folder will be read from.

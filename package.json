@@ -2,7 +2,7 @@
   "author": "Hendrik Weiler",
   "name": "jsm-compiler",
   "description": "Javascript Modular Compiler",
-  "version": "0.1.1",
+  "version": "0.1.6",
   "dependencies": {
     "glob": "*",
     "jsmin" : "*",
@@ -15,9 +15,14 @@
     "modular"
   ],
   "bin": {
-    "uppercaseme": "./bin/jsmc"
+    "jsmc": "./bin/jsmc"
   },
   "engines": {
     "node": "*"
+  },
+  "license": "MIT",
+  "repository" : { 
+      "type" : "git", 
+      "url" : "https://github.com/hendrik-weiler/jsm"
   }
 }

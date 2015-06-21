@@ -1,0 +1,7 @@
+#! /usr/bin/env node
+var compiler = require('../lib/compiler').jsmWatch;
+
+var srcfolder = process.argv[2];
+var buildpath = process.argv[3];
+
+compiler(srcfolder, buildpath);
