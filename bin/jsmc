@@ -1,7 +1,14 @@
 #! /usr/bin/env node
-var compiler = require('../lib/compiler').jsmWatch;
+var compiler = require('../lib/compiler');
 
-var srcfolder = process.argv[2];
-var buildpath = process.argv[3];
+var mode = process.argv[2];
+var srcfolder = process.argv[3];
+var buildpath = process.argv[4];
 
-compiler(srcfolder, buildpath);
+if(mode=='create') {
+	compiler.create(srcfolder);
+}
+
+if(mode=='watch') {
+	compiler.jsmWatch();
+}

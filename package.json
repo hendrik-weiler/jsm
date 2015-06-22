@@ -6,7 +6,9 @@
   "dependencies": {
     "glob": "*",
     "jsmin" : "*",
-    "watch" : "*"
+    "watch" : "*",
+    "ini" : "*",
+    "html-minifier" : "*"
   },
   "main": "./bin/jsmc",
   "keywords": [
