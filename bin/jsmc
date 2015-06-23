@@ -12,3 +12,7 @@ if(mode=='create') {
 if(mode=='watch') {
 	compiler.jsmWatch();
 }
+
+if(mode=='build') {
+	compiler.buildCLI();
+}

@@ -2,20 +2,23 @@
 <html>
 <head>
 	<title>Loading...</title>
+	<link rel="stylesheet" href="stylesheets/jsm.css">
 	<script src="vendor/loader.js"></script>
 	<script>
 	window.onload = function() {
 		var loader = new jsm.Loader();
-		loader.start(function() {
-			var app2 = new {{mainScript}}();
-			app2.start();
+		loader.start(function(loader) {
+			var application = new {{mainScript}}({
+				canvas : document.getElementById('{{canvasId}}')
+			});
+			application.start();
 		});
 	}
 	</script>
 </head>
 <body>
 	<div id="canvas">
-		<img src="{{images}}/loader.gif" alt="">
+		<img id="loader" src="{{images}}/loader.gif" class="jsm-loader">
 	</div>
 	<div id="templates">
 		{{templates}}
