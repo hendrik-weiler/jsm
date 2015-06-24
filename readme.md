@@ -55,6 +55,11 @@ Watch while in project folder:<br>
 ```
 jsmc watch
 ```
+<br>
+Get version:<br>
+```
+jsmc version
+```
 <br><br>
 ## How to compile?
 
