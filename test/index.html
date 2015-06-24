@@ -7,7 +7,7 @@
 	<script>
 	window.onload = function() {
 		var loader = new jsm.Loader();
-		loader.start(function(loader) {
+		loader.start(function() {
 			var application = new {{mainScript}}({
 				canvas : document.getElementById('{{canvasId}}')
 			});

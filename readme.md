@@ -1,16 +1,23 @@
 # JavaScript Module Compiler
 
-This little tool lets generates from javascript files
-a namespaced based modular system.
-
+This tool lets you create basic javascript only applications.<br>
+<br>
+Additionaly you will be able to use namespaces and templates rather easy.<br>
+<br>
+At the end on every save you get a full build of your latest changes. <b>Production-Ready</b>.
+<br>
 Example:
 ```
+// Set your template
+template "start.html" as start;
+
 // You start with a namespace
 namespace test.a.b.c;
 
 // And then you define a class
 Test = function() {
-	
+	// set the template content to the body
+	document.body.innerHTML = start;
 }
 Test.prototype.hallo = function() {
 	
@@ -25,7 +32,8 @@ Output:
 if(typeof test.a=="undefined")test.a={};
 if(typeof test.a.b=="undefined")test.a.b={};
 if(typeof test.a.b.c=="undefined")test.a.b.c={};
-test.a.b.c.Test=function(){}
+start=document.getElementById("templates/start.html").innerHTML;
+test.a.b.c.Test=function(){document.body.innerHTML = start;}
 test.a.b.c.Test.prototype.hallo=function(){}
 test.a.b.c.Help=function(){}
 ```
@@ -36,17 +44,21 @@ test.a.b.c.Help=function(){}
 npm install -g jsm-compiler
 ```
 
-Usage:<br>
+## Usage:<br>
+<br>
+Create Project:<br>
 ```
-jsmc folderToWatch fileToBuild
+jsmc create projectname
 ```
-
+<br>
+Watch while in project folder:<br>
+```
+jsmc watch
+```
+<br><br>
 ## How to compile?
 
+You have to be in a jsm project:
 ```
-node bin/jsmc test/app build.js
+jsmc build
 ```
-
-> The first parameter describes which folder will be read from.
-> All javascript files will read and parsed and merged and minified.
-> The second parameter describes which file the parsed content should be written in.

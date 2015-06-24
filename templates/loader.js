@@ -4,10 +4,7 @@ jsm.Loader = function() {
 
 }
 jsm.Loader.prototype.start = function(cb) {
-    var self = this;
-	this.scriptTag('app.min.js', function() {
-        cb();
-    });
+	this.scriptTag('app.min.js', cb);
 }
 jsm.Loader.prototype.scriptTag = function(url,callback) {
     if(!url || !(typeof url === 'string')){return};
