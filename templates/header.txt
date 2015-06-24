@@ -1,0 +1,5 @@
+/*
+ MyApp v{{version}}, rev {{revision}}
+ (c) 2015 MyCompany http://mywebsite.de
+ License: MIT
+*/
