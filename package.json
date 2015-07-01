@@ -2,7 +2,7 @@
   "author": "Hendrik Weiler",
   "name": "jsm-compiler",
   "description": "Javascript Modular Compiler",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "dependencies": {
     "glob": "*",
     "jsmin" : "*",
