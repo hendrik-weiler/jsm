@@ -8,7 +8,9 @@
     "jsmin" : "*",
     "watch" : "*",
     "ini" : "*",
-    "html-minifier" : "*"
+    "connect" : "*",
+    "serve-static" : "*",
+    "open" : "*"
   },
   "main": "./bin/jsmc",
   "keywords": [
