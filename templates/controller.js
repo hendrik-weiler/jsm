@@ -5,6 +5,5 @@ Controller = function(cb) {
 	this.cb = cb;
 }
 Controller.prototype.run = function() {
-	console.log(this);
 	this.cb();
 };

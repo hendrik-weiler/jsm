@@ -10,7 +10,8 @@
     "ini" : "*",
     "connect" : "*",
     "serve-static" : "*",
-    "open" : "*"
+    "open" : "*",
+    "clean-css" : "*"
   },
   "main": "./bin/jsmc",
   "keywords": [
