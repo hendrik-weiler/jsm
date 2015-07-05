@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/xcode.css">
+	<script src="js/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	<title>JSM Compiler</title>
+	<meta charset="utf8">
+</head>
+<body>
+	<div class="container">
+		<div class="header row">
+			<h1>JSM</h1>
+			<h4>Compiler</h4>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<p>
+					This tool lets you creates and minify javascript client applications. <br>
+					Its build to maximize the production speed and maintainability of the wished applications.<br>
+					<strong>For that purpose additional syntax was added:</strong>
+					<ul>
+						<li>
+							<h5>template "path/to/template.html" as templateNameVariable;</h5>
+							<p>When you have created your project, you can set the variable name will have the content of the file
+							as string to use it in your project directly.</p>
+						</li>
+						<li>
+							<h5>namespace a.b.c;</h5>
+							<p>You can define namespaces to manage your code better.</p>
+						</li>
+					</ul>
+				</p>
+				<p>
+					But you dont have to use the additional syntax.
+				</p>
+				<h1>Install</h1>
+				<p>The JSM Compiler is available at npm to install.</p>
+				<pre><code class="js">npm install jsm-compiler -g</code></pre>
+				<h1>Usage</h1>
+			</div>
+		</div>
+		<br><br>
+		<div class="row">
+			<div class="col-xs-6">
+				<p>Create a project</p>
+			</div>
+			<div class="col-xs-6">
+				<pre><code class="js">jsmc create projectname</code></pre>
+			</div>
+		</div>
+		<br><br>
+		<div class="row">
+			<div class="col-xs-6">
+				<p>Watch a project for changes and build accordingly.<br><i>You have to be in the project dir.</i></p>
+			</div>
+			<div class="col-xs-6">
+				<pre><code class="js">jsmc watch</code></pre>
+			</div>
+		</div>
+		<br><br>
+		<div class="row">
+			<div class="col-xs-6">
+				<p>Build the project.<br><i>You have to be in the project dir.</i></p>
+			</div>
+			<div class="col-xs-6">
+				<pre><code class="js">jsmc build</code></pre>
+			</div>
+		</div>
+		<br><br>
+		<div class="row">
+			<div class="col-xs-6">
+				<p>Returns the current installed jsmc version.</p>
+			</div>
+			<div class="col-xs-6">
+				<pre><code class="js">jsmc version</code></pre>
+			</div>
+		</div>
+		<div class="footer">
+			2015 © <a target="_blank" href="http://hendrikweiler.com">hendrikweiler.com</a>
+		</div>
+	</div>
+</body>
+</html>
